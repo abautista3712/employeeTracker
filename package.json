@@ -1,0 +1,26 @@
+{
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "employeetracker is a content management system designed to take user input to build a team of employees and track their data. This system utilizes npm inquirer to handle user input, mySQL as the server, and npm console.table to present the data.",
+  "main": "employeeTracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abautista3712/employeeTracker.git"
+  },
+  "keywords": [
+    "CLI",
+    "npm",
+    "inquirer",
+    "mySQL",
+    "console.table"
+  ],
+  "author": "Abelard Bautista",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abautista3712/employeeTracker/issues"
+  },
+  "homepage": "https://github.com/abautista3712/employeeTracker#readme"
+}
