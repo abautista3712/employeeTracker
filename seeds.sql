@@ -13,8 +13,8 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('James
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Philip', 'Schuyler', 7, 2);
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('James', 'Monroe', 7, 2);
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Frederick', 'Muhlenberg', 8,null);
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Jonathan', 'Trumbull, Jr.', 9, 5);
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('James', 'Madison', 9, 5);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Jonathan', 'Trumbull, Jr.', 9, 13);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('James', 'Madison', 9, 13);
 
 INSERT INTO role (title, salary, department_id) VALUES ('President', '100000', 1);
 INSERT INTO role (title, salary, department_id) VALUES ('Vice President', '90000', 1);
