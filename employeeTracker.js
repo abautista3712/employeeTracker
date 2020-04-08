@@ -37,7 +37,7 @@ function start() {
     .prompt([
       {
         name: "action",
-        type: "rawlist",
+        type: "list",
         message: "What would you like to do?",
         choices: [
           "View All Employees",
@@ -76,6 +76,7 @@ function start() {
 function viewAllEmployees() {
   connection.query("SELECT * FROM employee", function (err, data) {
     console.table(data);
+    start();
   });
   //   inquirer
   //     .prompt([
