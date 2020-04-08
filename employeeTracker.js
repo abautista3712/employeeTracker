@@ -1,7 +1,8 @@
 const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
-const path = require("path");
+const mysql = require("mysql");
 const cTable = require("console.table");
+const path = require("path");
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -17,6 +18,19 @@ const render = require("./lib/htmlRenderer");
 // Remove Employees
 // [REQUIRED] Update Employee Role
 // Update Employee Manager
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "employees_db",
+});
+
+connection.connect(function (err) {
+  if (err) throw err;
+  start();
+});
 
 function start() {
   return inquirer
@@ -60,16 +74,9 @@ function start() {
 }
 
 function viewAllEmployees() {
-  console.table([
-    {
-      name: "Test",
-      age: 10,
-    },
-    {
-      name: "SecondObj",
-      age: 20,
-    },
-  ]);
+  connection.query("SELECT * FROM employee", function (err, data) {
+    console.table(data);
+  });
   //   inquirer
   //     .prompt([
   //       {
@@ -111,5 +118,3 @@ function finishedAdding() {
     console.log("Team has been created successfully!");
   });
 }
-
-start();
