@@ -41,6 +41,8 @@ function start() {
         message: "What would you like to do?",
         choices: [
           "View All Employees",
+          "View All Departments",
+          "View All Roles",
           "Add Department",
           "Add Role",
           "Add Employee",
@@ -55,6 +57,10 @@ function start() {
         case "View All Employees":
           viewAllEmployees();
           break;
+        case "View All Departments":
+          viewAllDepartments();
+        case "View All Roles":
+          viewAllRoles();
         case "Add Department":
           addDepartment();
           break;
@@ -78,35 +84,35 @@ function viewAllEmployees() {
     console.table(data);
     start();
   });
-  //   inquirer
-  //     .prompt([
-  //       {
-  //         name: "officeNumber",
-  //         type: "input",
-  //         message: "What is the Manager's office number?",
-  //       },
-  //       { name: "done", type: "confirm", message: "Finished adding employees?" },
-  //     ])
-  //     .then((response) => {
-  //       const { employeeName, employeeId, employeeEmail } = employeeInfo;
-  //       const { officeNumber } = response;
-
-  //       let newManager = new Manager(
-  //         employeeName,
-  //         employeeId,
-  //         employeeEmail,
-  //         officeNumber
-  //       );
-  //       employees.push(newManager);
-  //       if (response.done) {
-  //         finishedAdding();
-  //       } else {
-  //         createTeam();
-  //       }
-  //     });
 }
 
-function addDepartment() {}
+function viewAllDepartments() {
+  connection.query("SELECT * FROM department", function (err, data) {
+    console.table(data);
+    start();
+  });
+}
+
+function addDepartment() {
+  inquirer
+    .prompt({
+      name: "newDepartment",
+      type: "input",
+      message: "Please input the name of the department you would like to add:",
+    })
+    .then(function (response) {
+      console.log(response);
+      connection.query(
+        "INSERT INTO department (name) VALUES ?",
+        response.name,
+        function (err, data) {
+          console.log(data);
+        }
+      );
+      console.log("Department successfully added!");
+      viewAllEmployees();
+    });
+}
 
 function addRole() {}
 
