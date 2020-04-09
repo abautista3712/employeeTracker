@@ -41,12 +41,12 @@ function start() {
         message: "What would you like to do?",
         choices: [
           "View All Employees",
-          "View All Departments",
           "View All Roles",
-          "Add Department",
-          "Add Role",
+          "View All Departments",
           "Add Employee",
-          "Update Employee Role",
+          "Add Role",
+          "Add Department",
+          "Update Employee",
         ],
       },
     ])
@@ -57,22 +57,22 @@ function start() {
         case "View All Employees":
           viewAllEmployees();
           break;
-        case "View All Departments":
-          viewAllDepartments();
         case "View All Roles":
           viewAllRoles();
-        case "Add Department":
-          addDepartment();
+        case "View All Departments":
+          viewAllDepartments();
+        case "Add Employee":
+          addEmployee();
           break;
         case "Add Role":
           addRole();
           break;
-        case "Add Employee":
-          addEmployee();
+        case "Add Department":
+          addDepartment();
           break;
-        case "Update Employee":
-          updateEmployee();
-          break;
+        // case "Update Employee":
+        //   updateEmployee();
+        //   break;
         default:
           break;
       }
@@ -88,6 +88,7 @@ function viewAllEmployees() {
 
 function viewAllDepartments() {
   connection.query("SELECT * FROM department", function (err, data) {
+    if (err) throw err;
     console.table(data);
     start();
   });
@@ -100,35 +101,35 @@ function viewAllRoles() {
   });
 }
 
-function addDepartment() {
-  inquirer
-    .prompt({
-      name: "newDepartment",
-      type: "input",
-      message: "Please input the name of the department you would like to add:",
-    })
-    .then(function (response) {
-      console.log(response);
-      connection.query(
-        "INSERT INTO department (name) VALUES ?",
-        response.name,
-        function (err, data) {
-          console.log(data);
-        }
-      );
-      console.log("Department successfully added!");
-      viewAllEmployees();
-    });
-}
+// function addDepartment() {
+//   inquirer
+//     .prompt({
+//       name: "newDepartment",
+//       type: "input",
+//       message: "Please input the name of the department you would like to add:",
+//     })
+//     .then(function (response) {
+//       console.log(response);
+//       connection.query(
+//         "INSERT INTO department (name) VALUES ?",
+//         response.name,
+//         function (err, data) {
+//           console.log(data);
+//         }
+//       );
+//       console.log("Department successfully added!");
+//       viewAllDepartments();
+//     });
+// }
 
-function addRole() {}
+// function addRole() {}
 
-function addEmployee() {}
+// function addEmployee() {}
 
-function updateEmployee() {}
+// // function updateEmployee() {}
 
-function finishedAdding() {
-  fs.writeFile(outputPath, render(employees), (err, data) => {
-    console.log("Team has been created successfully!");
-  });
-}
+// function finishedAdding() {
+//   fs.writeFile(outputPath, render(employees), (err, data) => {
+//     console.log("Team has been created successfully!");
+//   });
+// }
