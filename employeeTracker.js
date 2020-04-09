@@ -93,6 +93,13 @@ function viewAllDepartments() {
   });
 }
 
+function viewAllRoles() {
+  connection.query("SELECT * FROM role", function (err, data) {
+    console.table(data);
+    start();
+  });
+}
+
 function addDepartment() {
   inquirer
     .prompt({
